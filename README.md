@@ -4,9 +4,9 @@ Shortens idle stretches in screen recordings (mp4/mov): fully static screens **a
 a small region changes (spinners, progress bars, blinking cursors). Detected stretches are listed for
 confirmation before anything is cut.
 
-Works on macOS and Linux. Needs `python3` (3.9+) and `ffmpeg` (`brew install ffmpeg` / `sudo apt install ffmpeg`).
+Works on macOS and Linux. Needs [uv](https://docs.astral.sh/uv/) (`brew install uv`) and `ffmpeg` (`brew install ffmpeg` / `sudo apt install ffmpeg`).
 
-    ./setup.sh                       # creates .venv, installs numpy
+    uv sync                          # optional; ./video-trim also does this on first run
     ./video-trim demo.mov -m 2       # keep at most 2s of each idle stretch
 
 It prints a numbered table (time range, static/busy + spinner region, time saved), writes red-boxed
@@ -20,4 +20,4 @@ backgrounds), `--pixel-thresh 12`, `--gap 0.3`, `--fps 10`.
 
 Limits: detection is visual only — narration over a static screen is cut too unless you exclude that segment.
 
-Tests: `.venv/bin/pip install pytest && .venv/bin/python -m pytest tests`
+Tests: `uv run pytest`

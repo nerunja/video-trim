@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Launcher: uses the project venv if present (see setup.sh), else system python3.
+# Launcher: runs the project via uv (installs deps on first use). Works on macOS and Linux.
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-py="$here/.venv/bin/python"; [ -x "$py" ] || py=python3
-PYTHONPATH="$here${PYTHONPATH:+:$PYTHONPATH}" exec "$py" -m video_trim "$@"
+command -v uv >/dev/null || { echo "uv missing: https://docs.astral.sh/uv/ (brew install uv)"; exit 1; }
+exec uv run --quiet --project "$here" video-trim "$@"

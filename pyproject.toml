@@ -1,11 +1,20 @@
 [project]
 name = "video-trim"
 version = "0.1.0"
+description = "Detect and trim static/busy-indicator stretches in screen recordings"
+readme = "README.md"
 requires-python = ">=3.9"
 dependencies = ["numpy"]
 
 [project.scripts]
 video-trim = "video_trim.cli:main"
+
+[dependency-groups]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["video_trim"]
