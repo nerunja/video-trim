@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Launcher: uses the project venv if present (see setup.sh), else system python3.
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+py="$here/.venv/bin/python"; [ -x "$py" ] || py=python3
+PYTHONPATH="$here${PYTHONPATH:+:$PYTHONPATH}" exec "$py" -m video_trim "$@"
